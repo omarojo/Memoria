@@ -13,11 +13,16 @@ public class CardFlip : MonoBehaviour {
 	float waitTime;
 	bool isAnimatingProcessing = false;
 
+	//Sounds
+	public AudioClip flipSound;
+	private AudioSource a_source;
+
 	// Use this for initialization
 	void Start () {	
 		waitTime = 1.0f / fps;
+		a_source = GetComponent<AudioSource>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -27,6 +32,7 @@ public class CardFlip : MonoBehaviour {
 		if(isAnimatingProcessing || this.isFaceUp){ 
 			return;
 		}
+		a_source.PlayOneShot(flipSound,1.0f);
 		StartCoroutine(flip());
 	}
 

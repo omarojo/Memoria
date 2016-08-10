@@ -1,0 +1,8 @@
+<linker>
+	<assembly fullname="Assembly-CSharp">
+		<type fullname="UIManagerScript">
+			<method name="StartGame"/>
+			<method name="StartGame"/>
+		</type>
+	</assembly>
+</linker>

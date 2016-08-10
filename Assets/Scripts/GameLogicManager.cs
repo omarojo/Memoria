@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameLogicManager : MonoBehaviour {
 
@@ -9,9 +10,13 @@ public class GameLogicManager : MonoBehaviour {
 	public GameObject flipedCard1;
 	public GameObject flipedCard2;
 
+	//Sounds
+	public AudioClip matchedSound;
+	private AudioSource a_source;
+
 	// Use this for initialization
 	void Start () {
-		
+		a_source = gameObject.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +32,12 @@ public class GameLogicManager : MonoBehaviour {
 
 				if (id_1 == id_2) { //MATCHED !
 					matchedPairs++;
+					a_source.PlayOneShot (matchedSound, 1.0f); //Play Pikachu Sound
+					GameObject.Find("Pikachu").GetComponent<Pikachu>().showPikachu(); //Show Pikacho Hello
 					Debug.Log (">>>> MATCHED !!" + (totalPairs/2-matchedPairs).ToString() + "to go");
+					if (matchedPairs == totalPairs/2) {
+						SceneManager.LoadScene("End");
+					}
 
 				} else {
 					Debug.Log (">>> FAILED TO MATCH ");
